@@ -12,9 +12,12 @@ import javax.validation.constraints.Min;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Movie {
-    private int id;
+
+    private String id;
+
     private String mname;
-    private String genre;
+
+    private String[] genre;
 
     @Min(value=1,message = "rating should greater than 0")
     @Max(value=5,message = "rating should less than or equal to 5")

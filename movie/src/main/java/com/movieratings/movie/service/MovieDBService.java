@@ -9,11 +9,11 @@ import java.sql.*;
 @Service
 public class MovieDBService {
 
-    Connection mysqlConnection;
+        Connection mysqlConnection;
 
     public MovieDBService() throws SQLException {
 
-        mysqlConnection= DriverManager.getConnection("jdbc:mysql://localhost:3306/movieDB","root","password");
+        mysqlConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/movieDB","root","password");
 
     }
     public Connection getSQLConnection(){
@@ -25,10 +25,14 @@ public class MovieDBService {
 
         Statement statement = mysqlConnection.createStatement();
         // query to create table
-        String query = "create table if not exists movies (id int primary key auto_increment, mname varchar(20), genre varchar(50), ratings int, year int, description varchar(250))";
+        String queryMovieTable = "create table if not exists movies (id varchar(200) primary key, mname varchar(20), ratings int, year int, description varchar(250))";
 
         // statement to execute
-        statement.execute(query);
+        statement.execute(queryMovieTable);
+
+        String genreTable = "create table if not exists genre_table (id varchar(200) , genre varchar(200), FOREIGN KEY (id) REFERENCES movies(id))";
+
+        statement.execute(genreTable);
     }
 
 }
