@@ -9,7 +9,7 @@ import java.sql.*;
 @Service
 public class MovieDBService {
 
-        Connection mysqlConnection;
+    Connection mysqlConnection;
 
     public MovieDBService() throws SQLException {
 
@@ -25,12 +25,12 @@ public class MovieDBService {
 
         Statement statement = mysqlConnection.createStatement();
         // query to create table
-        String queryMovieTable = "create table if not exists movies (id varchar(200) primary key, mname varchar(20), ratings int, year int, description varchar(250))";
+        String queryMovieTable = "create table if not exists movies (id varchar(250) primary key, mname varchar(20), ratings int, year int, description varchar(250))";
 
         // statement to execute
         statement.execute(queryMovieTable);
 
-        String genreTable = "create table if not exists genre_table (id varchar(200) , genre varchar(200), FOREIGN KEY (id) REFERENCES movies(id))";
+        String genreTable = "create table if not exists genre_table (id varchar(250) , genre varchar(200), FOREIGN KEY (id) REFERENCES movies(id))";
 
         statement.execute(genreTable);
     }
