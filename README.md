@@ -1,2 +1,2 @@
 # Movie Review Spring
-A springboot application: SQL, JPA, Hibernate, SpringBoot
+A Springboot application: SQL, JPA, Hibernate, SpringBoot
