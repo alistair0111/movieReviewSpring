@@ -17,4 +17,6 @@ public class AdminService {
     public Movie addMovie(Movie movie){
         return movieRepository.save(movie);
     }
+
+    public Movie updateMovie(Movie movie){ return movieRepository.save(movie);}
 }
