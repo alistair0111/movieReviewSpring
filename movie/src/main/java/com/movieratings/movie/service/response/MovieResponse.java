@@ -1,9 +1,12 @@
 package com.movieratings.movie.service.response;
 
 
-import com.movieratings.movie.domain.Genre;
+import com.movieratings.movie.domain.GenreTable;
 import lombok.*;
 
+import java.util.List;
+
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,7 +15,7 @@ import lombok.*;
 public class MovieResponse {
 
     private String title;
-    private Genre genre;
+    private List<GenreTable> genres;
     private Double rating;
 
 }

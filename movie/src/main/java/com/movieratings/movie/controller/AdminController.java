@@ -24,7 +24,6 @@ public class AdminController {
 
     @PostMapping("/movie/add")
     public ResponseEntity<MovieResponse> addMovie(@RequestBody MovieAddRequest movieRequest){
-
         return new ResponseEntity<>(adminService.addMovie(movieRequest.toMovie()).toMovieResponse(), HttpStatus.CREATED);
     }
 
@@ -33,71 +32,12 @@ public class AdminController {
         return new ResponseEntity<>(adminService.updateMovie(movieUpdateRequest.toMovie()).toMovieResponse(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/movie/getMovie")
-    public ResponseEntity<Object> getMovie(@RequestParam Long movieId){
+    @GetMapping("/movie/get")
+    public ResponseEntity<Object> getMovie(@RequestParam Long movieId) {
         Optional<Movie> movie = adminService.getMovie(movieId);
-        if(movie.isPresent()){
-            return new ResponseEntity<>(movie.get(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>("Could not find movie with Id: "+movieId, HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(movie.isPresent()?movie.get():"Could not find movie with Id: " + movieId, HttpStatus.OK) ;
     }
-
 }
-
-
-
-
-
-
-
-/**
-
-Person {
-
-    name;
-    age;
-    email;
-    phonenumber;
-    ..
-
-    Person(String name,int age...)
-
-    1. create a new Person()
-            p.setName();
-            p.setAge();
-
-   2. new Person(String name..)
-
-
-
- MobilePhone{
-
- String os;
- String modelNumber;
-
- }
-
- MobilePhoneBuilder{
-
-   phone= new MobilePhone();
-   public  withOS(MobilePhone phone,String Os)
- {
-    phone.setOs(os);
- }
-
- public withModelNumber(MobilePhone phone,String modelNumber){
- phone.setModelNumber(modelNumber);
- }
-
- }
-
- new PhoneBuilder().withOs("android").withModelNumber("s20").withStylus("samsung pen");
- new PhoneBuilder().withOs("android").withModelNumber("s20").withRearCamera("40Mp");
-
-
-}
-*/
 
 
 

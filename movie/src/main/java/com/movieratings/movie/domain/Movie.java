@@ -23,8 +23,14 @@ public class Movie {
 
     private String title;
 
-    @Enumerated(EnumType.STRING)
-    private Genre genre;
+
+    @OneToMany(
+            mappedBy = "movie1",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<GenreTable> genres;
 
     private Double rating;
 
@@ -35,7 +41,7 @@ public class Movie {
     private List<Review> reviewList;
 
     public MovieResponse toMovieResponse(){
-        return MovieResponse.builder().genre(this.genre).title(this.title).rating(this.rating).build();
+        return MovieResponse.builder().genres(this.genres).title(this.title).rating(this.rating).build();
     }
 
 }

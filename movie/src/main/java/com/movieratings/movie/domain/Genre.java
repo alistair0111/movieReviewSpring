@@ -2,7 +2,6 @@ package com.movieratings.movie.domain;
 
 
 public enum Genre {
-
     ACTION,
     HORROR,
     COMEDY,
