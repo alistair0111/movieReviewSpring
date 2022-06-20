@@ -5,6 +5,8 @@ import com.movieratings.movie.domain.Movie;
 import com.movieratings.movie.repositories.MovieRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AdminService {
 
@@ -19,4 +21,8 @@ public class AdminService {
     }
 
     public Movie updateMovie(Movie movie){ return movieRepository.save(movie);}
+
+    public Optional<Movie> getMovie(long movieId){
+        return movieRepository.findById(movieId);
+    }
 }

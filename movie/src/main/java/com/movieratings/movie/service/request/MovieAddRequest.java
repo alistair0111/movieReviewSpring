@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieRequest {
+public class MovieAddRequest {
 
     private String title;
     private Genre genre;

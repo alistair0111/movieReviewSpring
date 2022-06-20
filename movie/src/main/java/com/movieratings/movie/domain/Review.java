@@ -1,19 +1,20 @@
 package com.movieratings.movie.domain;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.movieratings.movie.service.response.ReviewResponse;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
+@Setter
+@Getter
 @Entity
 @AllArgsConstructor
+@ToString(exclude = { "movie" })
 @NoArgsConstructor
 @Table(name="review_table")
 @Builder
@@ -28,8 +29,9 @@ public class Review {
 
     private double rating;
 
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn
+    @ManyToOne
+    @JoinColumn(name = "movie_movie_id", nullable = false)
+    @JsonBackReference
     private Movie movie;
 
     @CreationTimestamp
@@ -37,5 +39,10 @@ public class Review {
 
     @UpdateTimestamp
     private Date updatedDate;
+
+    public ReviewResponse toReviewResponse(){
+        return ReviewResponse.builder().movieId(this.movie.getMovieId()).
+                review(this).build();
+    }
 
 }
