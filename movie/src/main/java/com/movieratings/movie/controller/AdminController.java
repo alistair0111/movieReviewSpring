@@ -22,16 +22,19 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    //route to add movies (admin privileges)
     @PostMapping("/movie/add")
     public ResponseEntity<MovieResponse> addMovie(@RequestBody MovieAddRequest movieRequest){
         return new ResponseEntity<>(adminService.addMovie(movieRequest.toMovie()).toMovieResponse(), HttpStatus.CREATED);
     }
 
+    //route to update movies (admin privileges)
     @PutMapping("/movie/update")
     public ResponseEntity<MovieResponse> updateMovie(@RequestBody MovieUpdateRequest movieUpdateRequest){
         return new ResponseEntity<>(adminService.updateMovie(movieUpdateRequest.toMovie()).toMovieResponse(), HttpStatus.ACCEPTED);
     }
 
+    //route to get movie by Id (admin privileges)
     @GetMapping("/movie/get")
     public ResponseEntity<Object> getMovie(@RequestParam Long movieId) {
         Optional<Movie> movie = adminService.getMovie(movieId);
