@@ -26,7 +26,6 @@ public class MovieAddRequest {
         for(Genre g: genres){
             genresList.add(GenreTable.builder().genre(g).movie1(movie).build());
         }
-        //System.out.println(genresList);
         movie.setGenres(genresList);
         return movie;
     }

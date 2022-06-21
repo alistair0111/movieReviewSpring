@@ -18,9 +18,11 @@ public class MovieUpdateRequest {
     private String title;
     private List<Genre> genres;
 
+    private double rating;
+
     public Movie toMovie(){
         List<GenreTable> genresList = new ArrayList<>();
-        Movie movie = Movie.builder().movieId(id).title(title).rating(0.0).adminName("localhostAdmin").build();
+        Movie movie = Movie.builder().movieId(id).title(title).rating(rating).adminName("localhostAdmin").build();
         for(Genre g: genres){
             genresList.add(GenreTable.builder().genre(g).movie1(movie).build());
         }

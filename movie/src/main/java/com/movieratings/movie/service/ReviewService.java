@@ -16,11 +16,13 @@ public class ReviewService {
 
     public Review addReview(Review review){
         Review savedReview = reviewRepository.save(review);
-        logger.info(String.format("saved the review for movie {0}", savedReview.getMovie().getMovieId()));
+        logger.info(String.format("Status: {0}", savedReview!=null?"Added movie with Id: "+savedReview.getMovie().getMovieId():"Could not add"));
         return savedReview;
     }
 
     public Review getReviewById(Long reviewId) {
         return reviewRepository.findById(reviewId).orElse(null);
     }
+
+    public void deleteReviewByMovieId(long movieId){ reviewRepository.deleteByMovieMovieId(movieId);}
 }
