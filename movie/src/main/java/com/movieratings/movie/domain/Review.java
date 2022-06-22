@@ -40,6 +40,7 @@ public class Review {
     @UpdateTimestamp
     private Date updatedDate;
 
+
     public ReviewGetResponse toReviewGetResponse(){
         return ReviewGetResponse.builder().movieId(this.movie.getMovieId()).
                 review(this).movie(this.movie).build();

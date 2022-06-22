@@ -5,7 +5,11 @@ import com.movieratings.movie.domain.Movie;
 import com.movieratings.movie.domain.Review;
 import com.movieratings.movie.service.MovieService;
 import com.movieratings.movie.service.ReviewService;
+import com.movieratings.movie.service.UserService;
 import com.movieratings.movie.service.request.ReviewRequest;
+import com.movieratings.movie.service.request.UserSignUpRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +20,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    Logger logger = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     ReviewService reviewService;
 
     @Autowired
     MovieService movieService;
+
+    @Autowired
+    UserService userService;
 
     //route to add movie reviews (user privileges)
     @PostMapping("/review/add")
@@ -52,4 +62,16 @@ public class UserController {
         List<Object> movies = movieService.findMovieByRating(rating);
         return new ResponseEntity<>(movies==null?"No movie found":movies, HttpStatus.OK);
     }
+
+    //route for signingup as users/admin
+    @PostMapping("/signup")
+    public ResponseEntity<Object> addUser(@RequestBody UserSignUpRequest userRequest){
+        String result = userService.addUser(userRequest.toMyUser());
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    //route to signin@GetMapping("/signin")
+    ////    public ResponseEntity<Object> signIn
+//
+
 }
