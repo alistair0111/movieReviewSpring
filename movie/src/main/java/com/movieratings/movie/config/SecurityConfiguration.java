@@ -25,9 +25,9 @@ public class SecurityConfiguration {
         httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/**").hasAuthority(USER_AUTH)
+                .antMatchers("/movie/**").hasAuthority(USER_AUTH)
                 .antMatchers("/admin/**").hasAuthority(ADMIN_AUTH)
-                .antMatchers("/users/signup").permitAll()
+                .antMatchers("/user/signup").permitAll()
                 .and().httpBasic();
         return httpSecurity.build();
     }

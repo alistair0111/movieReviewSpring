@@ -34,6 +34,11 @@ public class Review {
     @JsonBackReference
     private Movie movie;
 
+    @ManyToOne
+    @JoinColumn(name = "user_user_id", nullable = false)
+    @JsonBackReference
+    private Users users;
+
     @CreationTimestamp
     private Date createdDate;
 

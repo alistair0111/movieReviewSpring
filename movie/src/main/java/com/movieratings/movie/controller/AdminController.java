@@ -29,25 +29,25 @@ public class AdminController {
 
 
     //route to add movies (admin privileges)
-    @PostMapping("/movie/add")
+    @PostMapping("/movie_add")
     public ResponseEntity<MovieResponse> addMovie(@RequestBody MovieAddRequest movieRequest){
         return new ResponseEntity<>(adminService.addMovie(movieRequest.toMovie()).toMovieResponse(), HttpStatus.CREATED);
     }
 
     //route to update movies (admin privileges)
-    @PutMapping("/movie/update")
+    @PutMapping("/movie_update")
     public ResponseEntity<MovieResponse> updateMovie(@RequestBody MovieUpdateRequest movieUpdateRequest){
         return new ResponseEntity<>(adminService.updateMovie(movieUpdateRequest.toMovie()).toMovieResponse(), HttpStatus.ACCEPTED);
     }
 
     //route to get movie by ID (admin privileges)
-    @GetMapping("/movie/get")
+    @GetMapping("/movie_get")
     public ResponseEntity<Object> getMovie(@RequestParam Long movieId){
         Optional<Movie> movie = adminService.getMovie(movieId);
         return new ResponseEntity<>(movie.isPresent()?movie.get():"Could not find movie with Id: " + movieId, HttpStatus.OK);
     }
 
-    @DeleteMapping("movie/delete")
+    @DeleteMapping("movie_delete")
     public ResponseEntity<Object> deleteMovie(@RequestParam Long movieId){
         try{
             adminService.deleteMovie(movieId);

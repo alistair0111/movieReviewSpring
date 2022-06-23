@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewService {
     Logger logger = LoggerFactory.getLogger(ReviewService.class);
@@ -25,4 +27,8 @@ public class ReviewService {
     }
 
     public void deleteReviewByMovieId(long movieId){ reviewRepository.deleteByMovieMovieId(movieId);}
+
+    public List<Review> getReviewsByMovieId(long id){ return reviewRepository.findByMovieMovieId(id);}
+
+    public List<Object> getReviewsByUserId(int id){ return reviewRepository.findByUserUserId(id);}
 }
