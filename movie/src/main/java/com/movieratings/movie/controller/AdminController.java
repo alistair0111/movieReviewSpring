@@ -47,6 +47,7 @@ public class AdminController {
         return new ResponseEntity<>(movie.isPresent()?movie.get():"Could not find movie with Id: " + movieId, HttpStatus.OK);
     }
 
+    //route to delete movie (admin privileges)
     @DeleteMapping("movie_delete")
     public ResponseEntity<Object> deleteMovie(@RequestParam Long movieId){
         try{
