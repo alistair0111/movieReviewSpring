@@ -3,6 +3,7 @@ package com.movieratings.movie.repositories;
 
 import com.movieratings.movie.domain.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +20,7 @@ public interface MovieRepository extends JpaRepository<Movie,Long> {
 
     //delete by id
     void deleteById(long movieId);
+
+    @Query(value = "select * from movie_table where movie_id in (select movie_movie_id from genre_table where genre = :genre)", nativeQuery = true)
+    List<Movie> findByGenres(String genre);
 }

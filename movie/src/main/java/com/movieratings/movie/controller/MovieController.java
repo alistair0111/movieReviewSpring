@@ -62,17 +62,22 @@ public class MovieController {
     }
 
     //find reviews by movieId  (user privileges)
-    @GetMapping("/reviewsbymovieid")
+    @GetMapping("/review/movieid")
     public ResponseEntity<Object> getReviewsByMovieId(@RequestParam long id){
         List<Review> movies = reviewService.getReviewsByMovieId(id);
         return new ResponseEntity<>(movies==null?NO_REVIEW:movies, HttpStatus.OK);
     }
 
     //find reviews by userid  (user privileges)
-    @GetMapping("/reviewsbyuserid")
+    @GetMapping("/review/userid")
     public ResponseEntity<Object> getReviewsByUserId(@RequestParam int id){
-        List<Object> movies = reviewService.getReviewsByUserId(id);
-        return new ResponseEntity<>(movies==null?NO_REVIEW:movies, HttpStatus.OK);
+        List<Review> reviews = reviewService.getReviewsByUserId(id);
+        return new ResponseEntity<>(reviews==null?NO_REVIEW:reviews, HttpStatus.OK);
     }
 
+    @GetMapping("/findbygenre")
+    public ResponseEntity<Object> getMovieByGenre(@RequestParam String genre){
+        List<Movie> movies = movieService.findByGenre(genre);
+        return new ResponseEntity<>(movies==null?NO_REVIEW:movies, HttpStatus.OK);
+    }
 }

@@ -30,5 +30,5 @@ public class ReviewService {
 
     public List<Review> getReviewsByMovieId(long id){ return reviewRepository.findByMovieMovieId(id);}
 
-    public List<Object> getReviewsByUserId(int id){ return reviewRepository.findByUserUserId(id);}
+    public List<Review> getReviewsByUserId(int id){ return reviewRepository.findByUsersUserId(id);}
 }

@@ -2,6 +2,7 @@ package com.movieratings.movie.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.movieratings.movie.service.response.ReviewByUserIdResponse;
 import com.movieratings.movie.service.response.ReviewGetResponse;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -49,6 +50,15 @@ public class Review {
     public ReviewGetResponse toReviewGetResponse(){
         return ReviewGetResponse.builder().movieId(this.movie.getMovieId()).
                 review(this).movie(this.movie).build();
+    }
+
+    public ReviewByUserIdResponse toReviewByUserIdResponse(){
+        return ReviewByUserIdResponse.builder().reviewId(reviewId)
+                .createdDate(createdDate)
+                .updatedDate(updatedDate)
+                .rating(rating)
+                .movieReview(movieReview)
+                .build();
     }
     
 }

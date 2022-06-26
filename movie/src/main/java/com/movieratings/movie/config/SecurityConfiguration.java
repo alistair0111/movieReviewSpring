@@ -28,7 +28,8 @@ public class SecurityConfiguration {
                 .antMatchers("/movie/**").hasAuthority(USER_AUTH)
                 .antMatchers("/admin/**").hasAuthority(ADMIN_AUTH)
                 .antMatchers("/user/signup").permitAll()
-                .and().httpBasic();
+                .and().formLogin()
+                .and().oauth2Login();
         return httpSecurity.build();
     }
 }

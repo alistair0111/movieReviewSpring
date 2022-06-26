@@ -21,4 +21,8 @@ public class MovieService {
     public List<Object> findMovieByRating(double rating){
         return movieRepository.findByRatingGreaterThanEqual(rating);
     }
+
+    public List<Movie> findByGenre(String genre){
+        return movieRepository.findByGenres(genre);
+    }
 }
